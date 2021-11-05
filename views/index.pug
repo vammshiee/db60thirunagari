@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p This is just a statement 
+  button(Type='button' class='btn btn-secondary' onclick='update()') Press Me
+  div#target Display
+  - var url  = 'van';
+  a(href='/' + url) vans 
+
+  script.
+    var client_count = 0
+    function update(){
+      client_count++;
+      console.log(client_count)
+      document.getElementById("target").innerHTML = "Value now " +client_count;
+    }
