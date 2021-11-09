@@ -2,30 +2,14 @@ extends layout
 
 block content
   h1= title
-  -
-    const vans = [
-      {
-      'Name': "Volks Wagon",
-      'Cost': "$15000",
-      'Seater':"8"
-      },
-      {
-      'Name': "Benz",
-      'Cost': "$18000",
-      'Seater':"10"
-      },
-      {
-      'Name': "Maruthi",
-      'Cost': "$19000",
-      'Seater':"11"
-      },
-      ]
+  - let vans=results
   div(class="container-fluid")
   div(class="row")
     each van,index in vans
-      div(class="col-sm-2 " onclick=`buy(${index})`) #{van.Name} - #{van.Cost} - #{van.Seater} 
+      div(class="col-sm-2 " onclick=`buy(${index})`) #{van.Name} - #{van.Company} - #{van.Price} 
   script.
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
       }     
+    
