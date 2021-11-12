@@ -44,7 +44,7 @@ async function recreateDB() {
       console.log("Third object saved")
   });
 }
-let reseed = true;
+let reseed = false;
 if (reseed) { recreateDB(); }
 var app = express();
 
@@ -68,7 +68,7 @@ mongoose.connect(connectionString,
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/resource/van', vanRouter);
+// app.use('/resource/van', vanRouter);
 app.use('/van', vanRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
