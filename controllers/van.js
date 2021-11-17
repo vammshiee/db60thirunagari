@@ -51,6 +51,19 @@ exports.van_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+// Handle van delete on DELETE.
+exports.van_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await van.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
 // for a specific Van. 
 exports.van_detail = async function(req, res) { 
     console.log("detail"  + req.params.id) 
@@ -63,6 +76,7 @@ exports.van_detail = async function(req, res) {
     } 
 }; 
 
+
 // Handle van create on POST.
 exports.van_create_post = async function (req, res) {
     console.log(req.body)
@@ -70,7 +84,7 @@ exports.van_create_post = async function (req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"van_type":"goat", "cost":12, "size":"large"}
+    // {"van_type":"van", "cost":12000, "size":"large"}
     document.Name = req.body.Name;
     document.Company = req.body.Company;
     document.Price = req.body.Price;
@@ -83,3 +97,17 @@ exports.van_create_post = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+// Handle a show one view with id specified by query
+exports.van_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await van.findById( req.query.id)
+    res.render('vandetail',
+   { title: 'van Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
