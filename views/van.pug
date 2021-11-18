@@ -1,15 +1,26 @@
 extends layout
 
 block content
+
   h1= title
-  - let vans=results
+
   div(class="container-fluid")
-  div(class="row")
+  - let vans=results
+  div(class="row m-1")
     each van,index in vans
+     -let destination = `dispatch(\"/van/update?id=${van._id}\")`
       div(class="col-sm-2 " onclick=`buy(${index})`) #{van.Name} - #{van.Company} - #{van.Price} 
+     button.btn( class="btn-primary ml-1", onclick= destination) Update
+  
   script.
+      function dispatch(path){
+        window.location.href=path
+      }
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
       }     
+
+    
+ 
     
