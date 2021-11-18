@@ -8,6 +8,16 @@ a {
 }
 
 .vanAttr {
-  background-color: aquamarine;
+  background-color: rgb(83, 180, 27);
   width: 120px;
  }
+
+
+.collor{
+  color: #305c23;
+  background-color: rgb(199, 196, 201);
+  width: 120px;
+
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ }
+}

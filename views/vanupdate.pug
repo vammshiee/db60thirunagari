@@ -2,44 +2,46 @@ extends layout
 
 block content
   h1= title
-
-  - let vanid = toShow._id
-  - let vanName = toShow.Name
-  - let vanCompany = toShow.Company
-  - let vanPrice = toShow.Price
-  
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{vanid}
-  - let actionid = "/resource/van/" + vanid
-  form(id='vanForm', action= actionid, method="GET")
-    div.form-group
-        label.vanAttr(for='Name') van Name
-        input#vanName(type='text', name='Name', value= Name )
-    div.form-group
-        label.vanAttr(for='company') van Company
-        input#company(type='text', name='Company', value= Company )
-    div.form-group
-        label.vanAttr(for='price') van Price
-        input#price(type='number', name='Price', value= Price )
-    input(type="submit")
-
-  script.
-    document.forms['vanForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        //resp = "sample";
-        console.log("sample")
-        alert("Update failed " + error )
-      });
-    });
+  if (toShow == null)
+   h2 No instance to update
+  else
+   - let vanid = toShow._id
+   - let vanName = toShow.Name
+   - let vanCompany = toShow.Company
+   - let vanPrice = toShow.Price
+   
+   div.row(class='mb-2')
+     div.mr-1 ID is
+     div #{vanid}
+   - let actionid = "/resource/van/" + vanid
+   form(id='vanForm', action= actionid, method="GET")
+     div.form-group
+         label.vanAttr(for='Name') van Name
+         input.collor#vanName(type='text', name='Name', value= Name )
+     div.form-group
+         label.vanAttr(for='company') van Company
+         input.collor#company(type='text', name='Company', value= Company )
+     div.form-group
+         label.vanAttr(for='price') van Price
+         input.collor#price(type='number', name='Price', value= Price )
+     input(type="submit")
+ 
+   script.
+     document.forms['vanForm'].addEventListener('submit', (event) => {
+       event.preventDefault();
+       // TODO do something here to show user that form is being submitted
+       fetch(event.target.action, {
+         method: 'PUT',
+         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+       }).then((resp) => {
+         return resp.json(); // or resp.text() or whatever the server sends
+       }).then((body) => {
+         alert("Update succeded")
+         // TODO handle body
+       }).catch((error) => {
+         // TODO handle error
+         //resp = "sample";
+         console.log("sample")
+         alert("Update failed " + error )
+       });
+     });
