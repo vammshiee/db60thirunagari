@@ -1,4 +1,5 @@
 var van = require('../models/van');
+//const van = require('../models/van');
 // List of all vans
 exports.van_list = async function (req, res) {
     try {
@@ -111,3 +112,4 @@ exports.van_view_one_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
+  
