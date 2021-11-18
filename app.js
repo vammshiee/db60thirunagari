@@ -11,6 +11,7 @@ var vanRouter = require('./routes/van');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
+// var vancreateRouter = require('./routes/vancreate');
 
 // We can seed the collection if needed on server start
 async function recreateDB() {
@@ -73,6 +74,7 @@ app.use('/van', vanRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
+// app.use('/van/create',vancreateRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

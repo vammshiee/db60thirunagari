@@ -18,6 +18,12 @@ router.put('/van/:id', van_controller.van_update_put);
 router.get('/van/:id', van_controller.van_detail);
 // GET request for list of all van items.
 router.get('/van', van_controller.van_list);
+
 /* GET detail van page */
+router.get('/detail', van_controller.van_view_one_Page);
+
+/* GET create van page */
+// router.get('/create', van_controller.van_create_Page);
+
 
 module.exports = router;

@@ -112,4 +112,41 @@ exports.van_view_one_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
-  
+  // Handle building the view for creating a van.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.van_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('vancreate', { title: 'van Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+   // Handle building the view for updating a van.
+// query provides the id
+exports.van_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await van.findById(req.query.id)
+    res.render('vanupdate', { title: 'van Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+   // Handle a delete one view with id from query
+exports.van_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await van.findById(req.query.id)
+    res.render('vandelete', { title: 'van Delete', toShow:
+   result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }}
